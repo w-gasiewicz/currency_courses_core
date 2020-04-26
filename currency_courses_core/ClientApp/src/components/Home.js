@@ -2,29 +2,32 @@ import React, { Component } from 'react';
 import  Moment from 'react-moment';
 import ReactTable from "react-table";
 import matchSorter from 'match-sorter';
-import NumericInput from 'react-numeric-input';
 import { Button, Form, FormGroup, Label, Input, FormText, Col } from 'reactstrap';
 import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
+import { useAlert } from 'react-alert'
 import './Home.css';
 
 export class Home extends Component {
     static displayName = Home.name;
-
+    
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true, showForm: false };
+        this.state = { forecasts: [], loading: true, showForm: false, precision: 2 };
         this.onClick = this.onClick.bind(this);
+        this.handlePrecision = this.handlePrecision.bind(this);
     }
 
     onClick() {
-        // On click we change our state – this will trigger our `render` method
-        this.setState({ showForm: true });
+        if (!this.showForm)
+            this.setState({ showForm: true });
+        else
+            this.setState({ showForm: false });
     }
 
     renderForm() {
         return (
             <MDBCol >
-            <MDBInput type="number" min="0" max="6" v-model="number" valueDefault="2" label="Ilosc miejsc po przecinku" />
+                <MDBInput type="number" min="0" max="6" v-model="number" valueDefault="2" label="Ilosc miejsc po przecinku" onChange={this.handlePrecision} />
             <div className="input-group md-form form-sm form-1 pl-0">
                 <div className="input-group-prepend">
                     <span className="input-group-text purple lighten-3" id="basic-text1">
@@ -33,11 +36,20 @@ export class Home extends Component {
                 </div>
                 <input className="form-control my-0 py-1" type="text" placeholder="Szukaj waluty" aria-label="Search" />
             </div>
-            <Button variant="light">Wyslij</Button>
+                <Button variant="light" type="submit">Zatwierdz</Button>
         </MDBCol>
         );
     }
-
+    handleSubmit(event) {
+        alert('Podano nastêpuj¹ce imiê: ' + this.state.value);
+        event.preventDefault();
+    }
+    handlePrecision(event) {
+        this.setState({
+            precision: event.target.value
+        })
+        //alert('precision = ' + event.target.value)
+    }
     componentDidMount() {
         this.populateWeatherData();
     }
@@ -147,8 +159,7 @@ export class Home extends Component {
                         <p>Sprawdz kursy walut.</p>
                     </MDBCol >
                     <Button variant="light" onClick={this.onClick}>Ustawienia</Button>
-                    <Form>
-                        
+                    <Form onSubmit={this.handleSubmit}>                        
                         {showForm && this.renderForm()}
                     </Form>
                 </MDBRow>
