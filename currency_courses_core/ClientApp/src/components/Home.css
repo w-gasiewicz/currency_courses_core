@@ -1,0 +1,6 @@
+﻿body {
+}
+#block_container {
+    display: flex;
+    justify-content: center;
+}

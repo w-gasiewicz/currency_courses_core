@@ -11,9 +11,11 @@ export default class App extends Component {
 
   render () {
     return (
-      <Layout>
+        <Layout>
+            <div className= "test">
         <Route exact path='/' component={Home} />
-        <Route path='/info' component={Info} />
+                <Route path='/info' component={Info} />
+            </div>
       </Layout>
     );
   }
