@@ -1,6 +1,6 @@
 using System;
 
-namespace currency_courses_core
+namespace currency_courses_core.Models
 {
     public class Currency
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using currency_courses_core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -26,7 +27,7 @@ namespace currency_courses_core.Controllers
             var rates = response["rates"] as JObject;
             var date = response["date"];
             List<Currency> list = new List<Currency>();
-
+            
             foreach (var item in rates)
             {
                 list.Add(new Currency
@@ -34,7 +35,7 @@ namespace currency_courses_core.Controllers
                     Date = Convert.ToDateTime(date),
                     Code = item.Key,
                     Name = GetName(item.Key),
-                    Value = Math.Round(1 / Convert.ToDouble(item.Value),2)
+                    Value = Math.Round(1 / Convert.ToDouble(item.Value), Settings.Precision)
                 });
             }
             return list;

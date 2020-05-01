@@ -4,7 +4,6 @@ import ReactTable from "react-table";
 import matchSorter from 'match-sorter';
 import { Button, Form, FormGroup, Label, Input, FormText, Col } from 'reactstrap';
 import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
-import { useAlert } from 'react-alert'
 import './Home.css';
 
 export class Home extends Component {
@@ -12,7 +11,7 @@ export class Home extends Component {
     
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true, showForm: false, precision: 2 };
+        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "" };
         this.onClick = this.onClick.bind(this);
         this.handlePrecision = this.handlePrecision.bind(this);
     }
@@ -27,7 +26,7 @@ export class Home extends Component {
     renderForm() {
         return (
             <MDBCol >
-                <MDBInput type="number" min="0" max="6" v-model="number" valueDefault="2" label="Ilosc miejsc po przecinku" onChange={this.handlePrecision} />
+                <MDBInput type="number" min="0" max="6" v-model="number" valueDefault="2" label="Iloœæ miejsc po przecinku" onChange={this.handlePrecision} />
             <div className="input-group md-form form-sm form-1 pl-0">
                 <div className="input-group-prepend">
                     <span className="input-group-text purple lighten-3" id="basic-text1">
@@ -41,20 +40,18 @@ export class Home extends Component {
         );
     }
     handleSubmit(event) {
-        alert('Podano nastêpuj¹ce imiê: ' + this.state.value);
         event.preventDefault();
     }
     handlePrecision(event) {
         this.setState({
-            precision: event.target.value
+            precision: event.target.value            
         })
-        //alert('precision = ' + event.target.value)
     }
     componentDidMount() {
-        this.populateWeatherData();
+        this.populateData();
     }
 
-    static renderCurrencyTable(forecasts) {
+    static renderCurrencyTable(values) {
         return (
             <table className='table table-dark table-hover' aria-labelledby="tabelLabel">
                 <thead>
@@ -66,7 +63,7 @@ export class Home extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {forecasts.map(forecast =>
+                    {values.map(forecast =>
                         <tr key={forecast.code}>
                             <td><Moment format="YYYY-MM-DD">{forecast.date}</Moment></td>
                             <td>{forecast.code}</td>
@@ -78,7 +75,7 @@ export class Home extends Component {
             </table>
             //<div>
             //    <ReactTable
-            //        data={forecasts}
+            //        data={values}
             //        filterable
             //        defaultFilterMethod={(filter, row) =>
             //            String(row[filter.id]) === filter.value}
@@ -150,7 +147,7 @@ export class Home extends Component {
         const { showForm } = this.state;
         let contents = this.state.loading
             ? <p><em>Wczytywanie...</em></p>
-            : Home.renderCurrencyTable(this.state.forecasts);
+            : Home.renderCurrencyTable(this.state.values);
         return (
             <div>
                 <h1 id="tabelLabel" >Kursy walut</h1>
@@ -168,9 +165,10 @@ export class Home extends Component {
         );
     }
 
-    async populateWeatherData() {
+    async populateData() {
         const response = await fetch('currency');
         const data = await response.json();
-        this.setState({ forecasts: data, loading: false });
+        this.setState({ values: data, loading: false });
+        
     }
 }
