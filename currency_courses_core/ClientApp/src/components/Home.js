@@ -17,27 +17,30 @@ export class Home extends Component {
     }
 
     onClick() {
-        if (!this.showForm)
+        if (!this.state.showForm)
             this.setState({ showForm: true });
         else
             this.setState({ showForm: false });
     }
 
     renderForm() {
-        return (
-            <MDBCol >
-                <MDBInput type="number" min="0" max="6" v-model="number" valueDefault="2" label="Iloœæ miejsc po przecinku" onChange={this.handlePrecision} />
-            <div className="input-group md-form form-sm form-1 pl-0">
-                <div className="input-group-prepend">
-                    <span className="input-group-text purple lighten-3" id="basic-text1">
-                        <MDBIcon className="text-white" icon="search" />
-                    </span>
-                </div>
-                <input className="form-control my-0 py-1" type="text" placeholder="Szukaj waluty" aria-label="Search" />
-            </div>
-                <Button variant="light" type="submit">Zatwierdz</Button>
-        </MDBCol>
-        );
+        if (this.state.showForm == true) {
+            return (
+                <MDBCol >
+                    <MDBInput type="number" min="0" max="6" v-model="number" valueDefault="2" label="Iloœæ miejsc po przecinku" onChange={this.handlePrecision} />
+                    <div className="input-group md-form form-sm form-1 pl-0">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text purple lighten-3" id="basic-text1">
+                                <MDBIcon className="text-white" icon="search" />
+                            </span>
+                        </div>
+                        <input className="form-control my-0 py-1" type="text" placeholder="Szukaj waluty" aria-label="Search" />
+                    </div>
+                    <Button variant="light" type="submit">Zatwierdz</Button>
+                </MDBCol>
+            );
+        }
+        else return (null);
     }
     handleSubmit(event) {
         event.preventDefault();
@@ -143,10 +146,26 @@ export class Home extends Component {
         );
     }
 
+    loadingAnimation() {
+        return (
+            <app>
+                <div class="loaderContainer">
+
+                    <svg class="loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340">
+                        <circle cx="170" cy="170" r="160" stroke="#E2007C" />
+                        <circle cx="170" cy="170" r="135" stroke="#404041" />
+                        <circle cx="170" cy="170" r="110" stroke="#E2007C" />
+                        <circle cx="170" cy="170" r="85" stroke="#404041" />
+                    </svg>
+
+                </div>
+            </app>);
+    }
+
     render() {
         const { showForm } = this.state;
         let contents = this.state.loading
-            ? <p><em>Wczytywanie...</em></p>
+            ? this.loadingAnimation()
             : Home.renderCurrencyTable(this.state.values);
         return (
             <div>
