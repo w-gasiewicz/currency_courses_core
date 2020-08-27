@@ -4,11 +4,12 @@ import ReactTable from "react-table";
 import matchSorter from 'match-sorter';
 import { Button, Form, FormGroup, Label, Input, FormText, Col } from 'reactstrap';
 import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
+import LoadingAnimation from './LoadingAnimation.js';
 import './Home.css';
 
 export class Home extends Component {
     static displayName = Home.name;
-    
+
     constructor(props) {
         super(props);
         this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "" };
@@ -47,7 +48,7 @@ export class Home extends Component {
     }
     handlePrecision(event) {
         this.setState({
-            precision: event.target.value            
+            precision: event.target.value
         })
     }
     componentDidMount() {
@@ -146,26 +147,11 @@ export class Home extends Component {
         );
     }
 
-    loadingAnimation() {
-        return (
-            <app>
-                <div class="loaderContainer">
-
-                    <svg class="loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340">
-                        <circle cx="170" cy="170" r="160" stroke="#E2007C" />
-                        <circle cx="170" cy="170" r="135" stroke="#404041" />
-                        <circle cx="170" cy="170" r="110" stroke="#E2007C" />
-                        <circle cx="170" cy="170" r="85" stroke="#404041" />
-                    </svg>
-
-                </div>
-            </app>);
-    }
-
     render() {
         const { showForm } = this.state;
+
         let contents = this.state.loading
-            ? this.loadingAnimation()
+            ? <LoadingAnimation />
             : Home.renderCurrencyTable(this.state.values);
         return (
             <div>
@@ -175,11 +161,13 @@ export class Home extends Component {
                         <p>Sprawdz kursy walut.</p>
                     </MDBCol >
                     <Button variant="light" onClick={this.onClick}>Ustawienia</Button>
-                    <Form onSubmit={this.handleSubmit}>                        
+                    <Form onSubmit={this.handleSubmit}>
                         {showForm && this.renderForm()}
                     </Form>
                 </MDBRow>
+
                 {contents}
+
             </div>
         );
     }
@@ -188,6 +176,5 @@ export class Home extends Component {
         const response = await fetch('currency');
         const data = await response.json();
         this.setState({ values: data, loading: false });
-        
     }
 }
