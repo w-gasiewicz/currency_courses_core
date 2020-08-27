@@ -37,7 +37,7 @@ export class Home extends Component {
                         </div>
                         <input className="form-control my-0 py-1" type="text" placeholder="Szukaj waluty" aria-label="Search" />
                     </div>
-                    <Button variant="light" type="submit">Zatwierdz</Button>
+                    <Button color="secondary" variant="light" type="submit">Zatwierdü</Button>
                 </MDBCol>
             );
         }

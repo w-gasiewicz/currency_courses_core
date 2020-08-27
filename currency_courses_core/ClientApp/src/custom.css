@@ -7,16 +7,80 @@ code {
   color: #E01A76;
 }
 
-/*body {
-    background-color: #343a40;
-}*/
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "arial",heletica,sans-serif;
+    font-size: 12px;
+    background: #343a40 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+    -webkit-animation: 10s linear 0s normal none infinite animate;
+    -moz-animation: 10s linear 0s normal none infinite animate;
+    -ms-animation: 10s linear 0s normal none infinite animate;
+    -o-animation: 10s linear 0s normal none infinite animate;
+    animation: 10s linear 0s normal none infinite animate;
 }
 
-/*.test {
+@-webkit-keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 500px 0;
+    }
+}
+
+@-moz-keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 500px 0;
+    }
+}
+
+@-ms-keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 500px 0;
+    }
+}
+
+@-o-keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 500px 0;
+    }
+}
+
+@keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 500px 0;
+    }
+}
+
+.btn-primary {
+  /*color: #fff;*/
+/*  background-color: #1b6ec2;
+  border-color: #1861ac;*/
+}
+.btn-secondary {
+    color: #fff;
     background-color: #1b6ec2;
-}*/
+    margin-right: 1.23em;
+}
+
+.container {
+    /*background-color: #ffffff;*/
+}
