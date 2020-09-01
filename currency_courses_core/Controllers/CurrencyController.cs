@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using currency_courses_core.Models;
+using currency_courses_core.SR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -47,19 +48,19 @@ namespace currency_courses_core.Controllers
             switch (code)
             {
                 case "PLN":
-                    name = "polski złoty";
+                    name = Dictionary.PolishZloty;
                     break;
                 case "CAD":
-                    name = "dolar kanadyjski";
+                    name = Dictionary.CanadianDollar;
                     break;
                 case "HKD":
-                    name = "dolar hongkoński";
+                    name = Dictionary.HongKongDollar;
                     break;
                 case "ISK":
-                    name = "korona islandzka";
+                    name = Dictionary.IcelandicKrone;
                     break;
                 case "PHP":
-                    name = "peso filipińskie";
+                    name = Dictionary.PhilipinePeso;
                     break;
                 case "DKK":
                     name = "korona duńska";

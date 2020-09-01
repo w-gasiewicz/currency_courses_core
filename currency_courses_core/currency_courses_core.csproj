@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\currency_courses_core.Models\currency_courses_core.Models.csproj" />
+    <ProjectReference Include="..\currency_courses_core.Strings\currency_courses_core.SR.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

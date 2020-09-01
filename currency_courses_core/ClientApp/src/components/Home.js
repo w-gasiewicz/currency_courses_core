@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import  Moment from 'react-moment';
-import ReactTable from "react-table";
-import matchSorter from 'match-sorter';
-import { Button, Form, FormGroup, Label, Input, FormText, Col } from 'reactstrap';
+import { Button, Form } from 'reactstrap';
 import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
 import LoadingAnimation from './LoadingAnimation.js';
+import CurrencyTable from './CurrencyTable.js';
 import './Home.css';
 
 export class Home extends Component {
@@ -51,108 +49,11 @@ export class Home extends Component {
             precision: event.target.value
         })
     }
-    componentDidMount() {
-        this.populateData();
-    }
-
-    static renderCurrencyTable(values) {
-        return (
-            <table className='table table-dark table-hover' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Kod</th>
-                        <th>Nazwa</th>
-                        <th>Cena</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {values.map(forecast =>
-                        <tr key={forecast.code}>
-                            <td><Moment format="YYYY-MM-DD">{forecast.date}</Moment></td>
-                            <td>{forecast.code}</td>
-                            <td>{forecast.name}</td>
-                            <td>{forecast.value}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-            //<div>
-            //    <ReactTable
-            //        data={values}
-            //        filterable
-            //        defaultFilterMethod={(filter, row) =>
-            //            String(row[filter.id]) === filter.value}
-            //        columns={[
-            //            {
-            //                Header: "Name",
-            //                columns: [
-            //                    {
-            //                        Header: "First Name",
-            //                        accessor: "firstName",
-            //                        filterMethod: (filter, row) =>
-            //                            row[filter.id].startsWith(filter.value) &&
-            //                            row[filter.id].endsWith(filter.value)
-            //                    },
-            //                    {
-            //                        Header: "Last Name",
-            //                        id: "lastName",
-            //                        accessor: d => d.lastName,
-            //                        filterMethod: (filter, rows) =>
-            //                            matchSorter(rows, filter.value, { keys: ["lastName"] }),
-            //                        filterAll: true
-            //                    }
-            //                ]
-            //            },
-            //            {
-            //                Header: "Info",
-            //                columns: [
-            //                    {
-            //                        Header: "Age",
-            //                        accessor: "age"
-            //                    },
-            //                    {
-            //                        Header: "Over 21",
-            //                        accessor: "age",
-            //                        id: "over",
-            //                        Cell: ({ value }) => (value >= 21 ? "Yes" : "No"),
-            //                        filterMethod: (filter, row) => {
-            //                            if (filter.value === "all") {
-            //                                return true;
-            //                            }
-            //                            if (filter.value === "true") {
-            //                                return row[filter.id] >= 21;
-            //                            }
-            //                            return row[filter.id] < 21;
-            //                        },
-            //                        Filter: ({ filter, onChange }) =>
-            //                            <select
-            //                                onChange={event => onChange(event.target.value)}
-            //                                style={{ width: "100%" }}
-            //                                value={filter ? filter.value : "all"}
-            //                            >
-            //                                <option value="all">Show All</option>
-            //                                <option value="true">Can Drink</option>
-            //                                <option value="false">Can't Drink</option>
-            //                            </select>
-            //                    }
-            //                ]
-            //            }
-            //        ]}
-            //        defaultPageSize={10}
-            //        className="-striped -highlight"
-            //    />
-            //    <br />
-            //</div>
-        );
-    }
 
     render() {
         const { showForm } = this.state;
 
-        let contents = this.state.loading
-            ? <LoadingAnimation />
-            : Home.renderCurrencyTable(this.state.values);
+        let table = <CurrencyTable />;
         return (
             <div>
                 <h1 id="tabelLabel" >Kursy walut</h1>
@@ -165,16 +66,8 @@ export class Home extends Component {
                         {showForm && this.renderForm()}
                     </Form>
                 </MDBRow>
-
-                {contents}
-
+                {table}
             </div>
         );
-    }
-
-    async populateData() {
-        const response = await fetch('currency');
-        const data = await response.json();
-        this.setState({ values: data, loading: false });
     }
 }
