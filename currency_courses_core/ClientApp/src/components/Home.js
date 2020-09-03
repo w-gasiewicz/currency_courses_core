@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'reactstrap';
 import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
-import LoadingAnimation from './LoadingAnimation.js';
 import CurrencyTable from './CurrencyTable.js';
 import './Home.css';
 
@@ -23,6 +22,9 @@ export class Home extends Component {
     }
 
     renderForm() {
+        var someDate = new Date();
+        var numberOfDaysToAdd = 3;
+        var date = someDate.setDate(someDate.getDate() + numberOfDaysToAdd); 
         if (this.state.showForm == true) {
             return (
                 <MDBCol >
@@ -35,6 +37,7 @@ export class Home extends Component {
                         </div>
                         <input className="form-control my-0 py-1" type="text" placeholder="Szukaj waluty" aria-label="Search" />
                     </div>
+                    <input className="form-control my-0 py-1" type="date" placeholder="Data" aria-label="Search" defaultValue={someDate} value={date} />
                     <Button color="secondary" variant="light" type="submit">Zatwierdü</Button>
                 </MDBCol>
             );

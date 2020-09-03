@@ -63,88 +63,88 @@ namespace currency_courses_core.Controllers
                     name = Dictionary.PhilipinePeso;
                     break;
                 case "DKK":
-                    name = "korona duńska";
+                    name = Dictionary.DanishKrone;
                     break;
                 case "HUF":
-                    name = "forint węgierski";
+                    name = Dictionary.HungarianForint;
                     break;
                 case "CZK":
-                    name = "korona czeska";
+                    name = Dictionary.CzechKrone;
                     break;
                 case "GBP":
-                    name = "brytyjski funt szterling";
+                    name = Dictionary.BritishPoundSterling;
                     break;
                 case "RON":
-                    name = "lej rumuński";
+                    name = Dictionary.RomanianLeu;
                     break;
                 case "SEK":
-                    name = "korona szwedzka";
+                    name = Dictionary.SwedishKrone;
                     break;
                 case "IDR":
-                    name = "rupia indonezyjska";
+                    name = Dictionary.IndonesianRupee;
                     break;
                 case "INR":
-                    name = "rupia indyjska";
+                    name = Dictionary.IndianRupee;
                     break;
                 case "BRL":
-                    name = "real brazylijski";
+                    name = Dictionary.BrazilianReal;
                     break;
                 case "RUB":
-                    name = "Rubel rosyjski";
+                    name = Dictionary.RussianRubel;
                     break;
                 case "HRK":
-                    name = "kuna chorwacka";
+                    name = Dictionary.CroatianKuna;
                     break;
                 case "JPY":
-                    name = "jen japoński";
+                    name = Dictionary.JapaneseYen;
                     break;
                 case "THB":
-                    name = "baht tajski";
+                    name = Dictionary.ThaiBaht;
                     break;
                 case "CHF":
-                    name = "frank szwajcarski";
+                    name = Dictionary.SwissFranc;
                     break;
                 case "EUR":
-                    name = "euro";
+                    name = Dictionary.Euro;
                     break;
                 case "MYR":
-                    name = "ringgit malezyjski";
+                    name = Dictionary.MalaysianRinggit;
                     break;
                 case "BGN":
-                    name = "lew bułgarski";
+                    name = Dictionary.BulgarianLev;
                     break;
                 case "TRY":
-                    name = "lira turecka";
+                    name = Dictionary.TurkishLira;
                     break;
                 case "CNY":
-                    name = "juan";
+                    name = Dictionary.Juan;
                     break;
                 case "NOK":
-                    name = "korona norweska";
+                    name = Dictionary.NorvegianKrone;
                     break;
                 case "NZD":
-                    name = "dolar nowozelandzki";
+                    name = Dictionary.NewZelandDolar;
                     break;
                 case "ZAR":
-                    name = "rand południowoafrykański";
+                    name = Dictionary.SouthAfricanRand;
                     break;
                 case "USD":
-                    name = "dolar amerykański";
+                    name = Dictionary.UnitedStatesDolar;
                     break;
                 case "MXN":
-                    name = "peso meksykańskie";
+                    name = Dictionary.MexicanPeso;
                     break;
                 case "SGD":
-                    name = "dolar singapurski";
+                    name = Dictionary.SingaporeDollar;
                     break;
                 case "AUD":
-                    name = "dolar australijski";
+                    name = Dictionary.AustralianDollar;
                     break;
                 case "ILS":
-                    name = "szekel izraelski";
+                    name = Dictionary.IsraeliShekel;
                     break;
                 case "KRW":
-                    name = "won południowokoreański";
+                    name = Dictionary.SouthKoreanWon;
                     break;
                 default:
                     name = "";
