@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'reactstrap';
 import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
+import moment from 'moment';
 import CurrencyTable from './CurrencyTable.js';
 import './Home.css';
 
@@ -9,7 +10,7 @@ export class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "" };
+        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "", date: new Date() };
         this.onClick = this.onClick.bind(this);
         this.handlePrecision = this.handlePrecision.bind(this);
     }
@@ -21,10 +22,12 @@ export class Home extends Component {
             this.setState({ showForm: false });
     }
 
+    onClickSubmit() {
+        console.log(this.state.precision.toString());//self.render();
+    }
+
     renderForm() {
-        var someDate = new Date();
-        var numberOfDaysToAdd = 3;
-        var date = someDate.setDate(someDate.getDate() + numberOfDaysToAdd); 
+        var date = new Date();
         if (this.state.showForm == true) {
             return (
                 <MDBCol >
@@ -37,16 +40,22 @@ export class Home extends Component {
                         </div>
                         <input className="form-control my-0 py-1" type="text" placeholder="Szukaj waluty" aria-label="Search" />
                     </div>
-                    <input className="form-control my-0 py-1" type="date" placeholder="Data" aria-label="Search" defaultValue={someDate} value={date} />
-                    <Button color="secondary" variant="light" type="submit">Zatwierdü</Button>
+                    <div className="input-group md-form form-sm form-1 pl-0">
+                        <input onChange={this.state.date = this.Date} className="form-control my-0 py-1" type="date" defaultValue={moment(date).format('YYYY-MM-DD')} />
+                    </div>
+                    <center>
+                        <Button color="secondary" variant="light" type="submit" onClick={this.onClickSubmit}>Zatwierdü</Button>
+                    </center>
                 </MDBCol>
             );
         }
         else return (null);
     }
+
     handleSubmit(event) {
         event.preventDefault();
     }
+
     handlePrecision(event) {
         this.setState({
             precision: event.target.value
@@ -56,7 +65,7 @@ export class Home extends Component {
     render() {
         const { showForm } = this.state;
 
-        let table = <CurrencyTable />;
+        let table = <CurrencyTable state={this.state} />;
         return (
             <div>
                 <h1 id="tabelLabel" >Kursy walut</h1>
@@ -64,10 +73,12 @@ export class Home extends Component {
                     <MDBCol >
                         <p>Sprawdz kursy walut.</p>
                     </MDBCol >
+
                     <Button variant="light" onClick={this.onClick}>Ustawienia</Button>
                     <Form onSubmit={this.handleSubmit}>
                         {showForm && this.renderForm()}
                     </Form>
+                   
                 </MDBRow>
                 {table}
             </div>

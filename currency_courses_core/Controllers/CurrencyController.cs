@@ -41,6 +41,27 @@ namespace currency_courses_core.Controllers
             }
             return list;
         }
+        [HttpGet("{day}")]
+        public IEnumerable<Currency> Get(string day)
+        {
+            var client = new WebClient();
+            JObject response = JObject.Parse(client.DownloadString("https://api.exchangeratesapi.io/"+day+"?base=PLN"));
+            var rates = response["rates"] as JObject;
+            var date = response["date"];
+            List<Currency> list = new List<Currency>();
+
+            foreach (var item in rates)
+            {
+                list.Add(new Currency
+                {
+                    Date = Convert.ToDateTime(date),
+                    Code = item.Key,
+                    Name = GetName(item.Key),
+                    Value = Math.Round(1 / Convert.ToDouble(item.Value), Settings.Precision)
+                });
+            }
+            return list;
+        }
         #region private methods
         private string GetName(string code)
         {
