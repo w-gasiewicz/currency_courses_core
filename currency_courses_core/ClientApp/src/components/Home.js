@@ -10,9 +10,12 @@ export class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "", date: new Date() };
+        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "", date: moment(new Date()).format('YYYY-MM-DD') };
         this.onClick = this.onClick.bind(this);
         this.handlePrecision = this.handlePrecision.bind(this);
+        this.handleDate = this.handleDate.bind(this);
+        this.handleSearchString = this.handleSearchString.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     onClick() {
@@ -22,8 +25,28 @@ export class Home extends Component {
             this.setState({ showForm: false });
     }
 
-    onClickSubmit() {
-        console.log(this.state.precision.toString());//self.render();
+    handlePrecision(event) {
+        //console.log(event.target.value);
+        this.setState({
+            precision: event.target.value
+        })
+    }
+
+    handleDate(event) {
+        //console.log(event.target.value);
+        //console.log(event.target);
+        this.setState({ date: event.target.value });
+    }
+
+    handleSearchString(event) {
+        //console.log(event.target.value);
+        this.setState({ searchString: event.target.value });
+    }
+
+    handleSubmit(event) {
+        //console.log("submit");
+        //event.preventDefault();
+        this.render();
     }
 
     renderForm() {
@@ -38,28 +61,18 @@ export class Home extends Component {
                                 <MDBIcon className="text-white" icon="search" />
                             </span>
                         </div>
-                        <input className="form-control my-0 py-1" type="text" placeholder="Szukaj waluty" aria-label="Search" />
+                        <input onChange={this.handleSearchString} className="form-control my-0 py-1" type="text" placeholder="Szukaj waluty" aria-label="Search" />
                     </div>
                     <div className="input-group md-form form-sm form-1 pl-0">
-                        <input onChange={this.state.date = this.Date} className="form-control my-0 py-1" type="date" defaultValue={moment(date).format('YYYY-MM-DD')} />
+                        <input onChange={this.handleDate} className="form-control my-0 py-1" type="date" defaultValue={moment(date).format('YYYY-MM-DD')} value={this.state.Date} />
                     </div>
                     <center>
-                        <Button color="secondary" variant="light" type="submit" onClick={this.onClickSubmit}>Zatwierdü</Button>
+                        <Button color="secondary" variant="light" type="submit" onClick={this.handleSubmit}>Zatwierdü</Button>
                     </center>
                 </MDBCol>
             );
         }
         else return (null);
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-    }
-
-    handlePrecision(event) {
-        this.setState({
-            precision: event.target.value
-        })
     }
 
     render() {
@@ -77,8 +90,7 @@ export class Home extends Component {
                     <Button variant="light" onClick={this.onClick}>Ustawienia</Button>
                     <Form onSubmit={this.handleSubmit}>
                         {showForm && this.renderForm()}
-                    </Form>
-                   
+                    </Form>                   
                 </MDBRow>
                 {table}
             </div>

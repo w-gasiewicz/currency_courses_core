@@ -9,5 +9,6 @@ namespace currency_courses_core.Models
     {
         public static string SearchName { get; set; }
         public static int Precision { get; set; } = 2;
+        public static DateTime Date { get; set; }
     }
 }

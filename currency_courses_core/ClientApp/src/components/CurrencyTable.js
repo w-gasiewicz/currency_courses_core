@@ -112,29 +112,29 @@ export class CurrencyTable extends Component {
     componentDidMount() {
         this.populateData();
     }
-        
+    componentWillReceiveProps(props) {
+        //console.log("props");
+        if (this.state.date != props.state.date) {
+            this.state = props.state;
+            this.populateData();
+        }
+    }
     render() {
         let contents = this.state.loading
 
         if (contents)
             return (< LoadingAnimation />);
 
+        this.populateData();
         return (
             <div className="Test"> <ProductTable
                 products = {this.state.values}
             />
         </div>
-    );
-    }
-    getDate() {
-        var dd = String(this.state.date.getDate()).padStart(2, '0');
-        var mm = String(this.state.date.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = this.state.date.getFullYear();
-
-        return yyyy + '-'+ mm + '-' + dd;
+        );
     }
     async populateData() {
-        var t = 'currency/' + this.getDate();
+        var t = 'currency/' + this.state.date;
         const response = await fetch(t);
         const data = await response.json();
         this.setState({ values: data, loading: false });

@@ -21,7 +21,9 @@ namespace currency_courses_core
         {
 
             services.AddControllersWithViews();
-
+            //swagger
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", 
+                new Microsoft.OpenApi.Models.OpenApiInfo { Title = "My API", Version = "V1"}));
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
