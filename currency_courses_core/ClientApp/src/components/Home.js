@@ -54,7 +54,7 @@ export class Home extends Component {
         if (this.state.showForm == true) {
             return (
                 <MDBCol >
-                    <MDBInput type="number" min="0" max="6" v-model="number" valueDefault="2" label="IloúÊ miejsc po przecinku" onChange={this.handlePrecision} />
+                    <MDBInput type="number" min="0" max="6" v-model="number" valueDefault="2" label="Miejsca po przecinku" onChange={this.handlePrecision} />
                     <div className="input-group md-form form-sm form-1 pl-0">
                         <div className="input-group-prepend">
                             <span className="input-group-text purple lighten-3" id="basic-text1">
@@ -67,7 +67,7 @@ export class Home extends Component {
                         <input onChange={this.handleDate} className="form-control my-0 py-1" type="date" defaultValue={moment(date).format('YYYY-MM-DD')} value={this.state.Date} />
                     </div>
                     <center>
-                        <Button color="secondary" variant="light" type="submit" onClick={this.handleSubmit}>Zatwierdü</Button>
+                        {/* <Button color="secondary" variant="light" type="submit" onClick={this.handleSubmit} >Zatwierdü</Button>*/}
                     </center>
                 </MDBCol>
             );

@@ -114,7 +114,7 @@ export class CurrencyTable extends Component {
     }
     componentWillReceiveProps(props) {
         //console.log("props");
-        if (this.state.date != props.state.date) {
+        if (this.state.date != props.state.date || this.state.precision != props.state.precision) {
             this.state = props.state;
             this.populateData();
         }
@@ -134,7 +134,7 @@ export class CurrencyTable extends Component {
         );
     }
     async populateData() {
-        var t = 'currency/' + this.state.date;
+        var t = 'currency/' + this.state.date + '/' + this.state.precision;
         const response = await fetch(t);
         const data = await response.json();
         this.setState({ values: data, loading: false });

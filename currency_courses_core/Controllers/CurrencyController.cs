@@ -41,8 +41,8 @@ namespace currency_courses_core.Controllers
             }
             return list;
         }
-        [HttpGet("{day}")]
-        public IEnumerable<Currency> Get(string day)
+        [HttpGet("{day}/{precision}")]
+        public IEnumerable<Currency> Get(string day, int precision)
         {
             var client = new WebClient();
             JObject response = JObject.Parse(client.DownloadString("https://api.exchangeratesapi.io/"+day+"?base=PLN"));
@@ -57,7 +57,7 @@ namespace currency_courses_core.Controllers
                     Date = Convert.ToDateTime(date),
                     Code = item.Key,
                     Name = GetName(item.Key),
-                    Value = Math.Round(1 / Convert.ToDouble(item.Value), Settings.Precision)
+                    Value = Math.Round(1 / Convert.ToDouble(item.Value), precision/*Settings.Precision*/)
                 });
             }
             return list;
