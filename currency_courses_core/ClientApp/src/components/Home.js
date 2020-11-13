@@ -26,26 +26,20 @@ export class Home extends Component {
     }
 
     handlePrecision(event) {
-        //console.log(event.target.value);
         this.setState({
             precision: event.target.value
         })
     }
 
     handleDate(event) {
-        //console.log(event.target.value);
-        //console.log(event.target);
         this.setState({ date: event.target.value });
     }
 
     handleSearchString(event) {
-        //console.log(event.target.value);
         this.setState({ searchString: event.target.value });
     }
 
     handleSubmit(event) {
-        //console.log("submit");
-        //event.preventDefault();
         this.render();
     }
 

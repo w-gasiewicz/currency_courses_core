@@ -7,6 +7,6 @@ namespace currency_courses_core.Models
         public DateTime Date { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
-        public double Value { get; set; }
+        public Decimal Value { get; set; }
     }
 }

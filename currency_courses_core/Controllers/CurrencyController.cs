@@ -36,7 +36,7 @@ namespace currency_courses_core.Controllers
                     Date = Convert.ToDateTime(date),
                     Code = item.Key,
                     Name = GetName(item.Key),
-                    Value = Math.Round(1 / Convert.ToDouble(item.Value), Settings.Precision)
+                    Value = Math.Round(1 / Convert.ToDecimal(item.Value), Settings.Precision)
                 });
             }
             return list;
@@ -49,20 +49,29 @@ namespace currency_courses_core.Controllers
             var rates = response["rates"] as JObject;
             var date = response["date"];
             List<Currency> list = new List<Currency>();
+            string format = GetFormat(precision);
 
             foreach (var item in rates)
             {
+                var strValue = (1 / Convert.ToDecimal(item.Value)).ToString(format);
                 list.Add(new Currency
                 {
                     Date = Convert.ToDateTime(date),
                     Code = item.Key,
                     Name = GetName(item.Key),
-                    Value = Math.Round(1 / Convert.ToDouble(item.Value), precision/*Settings.Precision*/)
-                });
+                    Value = Decimal.Parse(strValue)
+                }); ;
             }
             return list;
         }
         #region private methods
+        private string GetFormat(int precision)
+        {
+            string format = "0.";
+            for (int i = 0; i < precision; i++)
+                format += "0";
+            return format;
+        }
         private string GetName(string code)
         {
             string name;

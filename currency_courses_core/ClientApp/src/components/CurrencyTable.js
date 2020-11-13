@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component, Number } from 'react';
 import Moment from 'react-moment';
 import LoadingAnimation from './LoadingAnimation.js';
 import './CurrencyTable.css';
@@ -113,7 +113,6 @@ export class CurrencyTable extends Component {
         this.populateData();
     }
     componentWillReceiveProps(props) {
-        //console.log("props");
         if (this.state.date != props.state.date || this.state.precision != props.state.precision) {
             this.state = props.state;
             this.populateData();
