@@ -1,7 +1,9 @@
 ﻿import React, { Component } from 'react';
-import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
+import { MDBCol, MDBIcon, MDBRow, MDBInput, MDBDropdownItem, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu } from "mdbreact";
 import moment from 'moment';
-
+import Select from 'react-select';
+import  Strings  from '../SR/Strings.js'
+    
 export class ChartsMenu extends Component {
     static displayName = ChartsMenu.name;
 
@@ -16,6 +18,13 @@ export class ChartsMenu extends Component {
     }
 
     render() {
+        const options = [
+            { value: 'chocolate', label: 'Chocolate' },
+            { value: 'strawberry', label: 'Strawberry' },
+            { value: 'vanilla', label: 'Vanilla' }]
+
+        const strings = new Strings();
+
         var date = new Date();
         return (
             <div>
@@ -31,6 +40,7 @@ export class ChartsMenu extends Component {
                 <div className="input-group md-form form-sm form-1 pl-0">
                     <input onChange={this.handleDate} className="form-control my-0 py-1" type="date" defaultValue={moment(date).format('YYYY-MM-DD')} value={this.state.Date} />
                 </div>
+                <Select placeholder={strings.picCurrency+'...'} options={options} />
             </div>
         );
     }
