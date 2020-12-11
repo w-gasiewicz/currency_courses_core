@@ -18,12 +18,41 @@ export class ChartsMenu extends Component {
     }
 
     render() {
-        const options = [
-            { value: 'chocolate', label: 'Chocolate' },
-            { value: 'strawberry', label: 'Strawberry' },
-            { value: 'vanilla', label: 'Vanilla' }]
-
         const strings = new Strings();
+        const options = [
+            { value: 'PolishZloty', label: strings.PolishZloty },
+            { value: 'CanadianDollar', label: strings.CanadianDollar },
+            { value: 'HongKongDollar', label: strings.HongKongDollar },
+            { value: 'IcelandicKrone', label: strings.IcelandicKrone },
+            { value: 'PhilipinePeso', label: strings.PhilipinePeso },
+            { value: 'DanishKrone', label: strings.DanishKrone },
+            { value: 'HungarianForint', label: strings.HungarianForint },
+            { value: 'CzechKrone', label: strings.CzechKrone },
+            { value: 'BritishPoundSterling', label: strings.BritishPoundSterling },
+            { value: 'RomanianLeu', label: strings.RomanianLeu },
+            { value: 'SwedishKrone', label: strings.SwedishKrone },
+            { value: 'IndonesianRupee', label: strings.IndonesianRupee },
+            { value: 'IndianRupee', label: strings.IndianRupee },
+            { value: 'BrazilianReal', label: strings.BrazilianReal },
+            { value: 'RussianRubel', label: strings.RussianRubel },
+            { value: 'CroatianKuna', label: strings.CroatianKuna },
+            { value: 'JapaneseYen', label: strings.JapaneseYen },
+            { value: 'ThaiBaht', label: strings.ThaiBaht },
+            { value: 'SwissFranc', label: strings.SwissFranc },
+            { value: 'Euro', label: strings.Euro },
+            { value: 'MalaysianRinggit', label: strings.MalaysianRinggit },
+            { value: 'BulgarianLev', label: strings.BulgarianLev },
+            { value: 'TurkishLira', label: strings.TurkishLira },
+            { value: 'Juan', label: strings.Juan },
+            { value: 'NorvegianKrone', label: strings.NorvegianKrone },
+            { value: 'NewZelandDolar', label: strings.NewZelandDolar },
+            { value: 'SouthAfricanRand', label: strings.SouthAfricanRand },
+            { value: 'UnitedStatesDolar', label: strings.UnitedStatesDolar },
+            { value: 'MexicanPeso', label: strings.MexicanPeso },
+            { value: 'SingaporeDollar', label: strings.SingaporeDollar },
+            { value: 'AustralianDollar', label: strings.AustralianDollar },
+            { value: 'IsraeliShekel', label: strings.IsraeliShekel },
+            { value: 'SouthKoreanWon', label: strings.SouthKoreanWon }]
 
         var date = new Date();
         return (
