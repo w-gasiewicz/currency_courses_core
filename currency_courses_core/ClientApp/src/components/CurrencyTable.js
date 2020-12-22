@@ -1,7 +1,7 @@
 ﻿import React, { Component, Number } from 'react';
 import Moment from 'react-moment';
 import LoadingAnimation from './LoadingAnimation.js';
-import './CurrencyTable.css';
+import './css/CurrencyTable.css';
 
 const useSortableData = (items, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);

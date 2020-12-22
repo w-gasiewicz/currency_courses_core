@@ -3,7 +3,7 @@ import { Button, Form } from 'reactstrap';
 import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
 import moment from 'moment';
 import CurrencyTable from './CurrencyTable.js';
-import './Home.css';
+import './css/Home.css';
 
 export class Home extends Component {
     static displayName = Home.name;
