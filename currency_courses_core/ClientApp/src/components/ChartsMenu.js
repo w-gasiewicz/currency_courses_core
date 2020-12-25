@@ -2,7 +2,7 @@
 import { MDBCol, MDBIcon, MDBRow, MDBInput, MDBDropdownItem, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu } from "mdbreact";
 import moment from 'moment';
 import Select from 'react-select';
-import  Strings  from '../SR/Strings.js'
+import Strings from '../SR/Strings.js'
     
 export class ChartsMenu extends Component {
     static displayName = ChartsMenu.name;

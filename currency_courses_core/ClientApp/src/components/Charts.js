@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import ChartsMenu from './ChartsMenu.js';
 import Chart from './Chart.js';
+import './css/ChartStyles.css';
 
 export class Charts extends Component {
     static displayName = Charts.name;
@@ -9,7 +10,9 @@ export class Charts extends Component {
         return (
             <div>
                 <ChartsMenu />
-                <Chart />
+                <div className='background'>
+                    <Chart />
+                </div>
             </div>
         );
     }

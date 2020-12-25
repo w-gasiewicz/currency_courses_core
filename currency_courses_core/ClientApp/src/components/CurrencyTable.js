@@ -2,6 +2,7 @@
 import Moment from 'react-moment';
 import LoadingAnimation from './LoadingAnimation.js';
 import './css/CurrencyTable.css';
+import './css/TextStyles.css';
 
 const useSortableData = (items, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);
@@ -47,7 +48,7 @@ const ProductTable = (props) => {
     };
     return (
         <table className='table table-dark table-hover' aria-labelledby="tabelLabel">
-            <caption>Tabela kursów walut na wybrany dzień</caption>
+            <caption className='text'>Tabela kursów walut na wybrany dzień</caption>
             <thead>
                 <tr>
                     <th>
