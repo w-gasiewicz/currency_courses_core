@@ -11,3 +11,9 @@
     border-color: #1861ac;
     margin-right: 1.23em;
 }
+
+.react-switch {
+    vertical-align: middle;
+    margin-left: 4px;
+}
+   

@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
         <Layout>
             <div className= "test">
-        <Route exact path='/' component={Home} />
+                <Route exact path='/' component={Home} />
                 <Route path='/info' component={Info} />
                 <Route path='/charts' component={Charts} />
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'reactstrap';
+import Switch from "react-switch";
 import { MDBCol, MDBIcon, MDBRow, MDBInput } from "mdbreact";
 import moment from 'moment';
 import CurrencyTable from './CurrencyTable.js';
@@ -10,12 +11,13 @@ export class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "", date: moment(new Date()).format('YYYY-MM-DD') };
+        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "", date: moment(new Date()).format('YYYY-MM-DD'), checked: true };
         this.onClick = this.onClick.bind(this);
         this.handlePrecision = this.handlePrecision.bind(this);
         this.handleDate = this.handleDate.bind(this);
         this.handleSearchString = this.handleSearchString.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     onClick() {
@@ -43,6 +45,10 @@ export class Home extends Component {
         this.render();
     }
 
+    handleChange(checked) {
+        this.setState({ checked: checked });
+    }
+
     renderForm() {
         var date = new Date();
         if (this.state.showForm == true) {
@@ -60,6 +66,10 @@ export class Home extends Component {
                     <div className="input-group md-form form-sm form-1 pl-0">
                         <input onChange={this.handleDate} className="form-control my-0 py-1" type="date" defaultValue={moment(date).format('YYYY-MM-DD')} value={this.state.Date} />
                     </div>
+                    <label>
+                        <span>Animacja</span>
+                        <Switch onChange={this.handleChange} checked={this.state.checked} className="react-switch"/>
+                    </label>
                     <center>
                         {/* <Button color="secondary" variant="light" type="submit" onClick={this.handleSubmit} >Zatwierdü</Button>*/}
                     </center>
