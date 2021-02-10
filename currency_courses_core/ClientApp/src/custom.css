@@ -18,6 +18,7 @@ body {
     -ms-animation: 10s linear 0s normal none infinite animate;
     -o-animation: 10s linear 0s normal none infinite animate;
     animation: 10s linear 0s normal none infinite animate;
+    animation-play-state: running;
 }
 
 @-webkit-keyframes animate {

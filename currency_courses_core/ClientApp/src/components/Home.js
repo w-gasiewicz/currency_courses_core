@@ -11,7 +11,7 @@ export class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "", date: moment(new Date()).format('YYYY-MM-DD'), checked: true };
+        this.state = { values: [], loading: true, showForm: false, precision: 2, searchString: "", date: moment(new Date()).format('YYYY-MM-DD'), checked: true};
         this.onClick = this.onClick.bind(this);
         this.handlePrecision = this.handlePrecision.bind(this);
         this.handleDate = this.handleDate.bind(this);
